@@ -6,7 +6,8 @@
     "prepare": "husky install",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && tsc --noEmit && astro build",
+    "build": "astro build",
+    "check": "astro check && tsc --noEmit",
     "preview": "astro preview",
     "astro": "astro"
   },
