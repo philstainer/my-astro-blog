@@ -13,7 +13,8 @@ export const get = () =>
     description: SITE_DESCRIPTION,
     site: import.meta.env.SITE,
     items: posts.map((post) => ({
-      ...post,
-      pubDate: post.frontmatter.pubDate,
+      link: post.url,
+      title: post.frontmatter.title,
+      pubDate: post.frontmatter.publishedDate,
     })),
   });
