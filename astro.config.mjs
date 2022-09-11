@@ -1,10 +1,15 @@
-import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
-import react from "@astrojs/react";
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
 
-// https://astro.build/config
+import { remarkReadingTime } from './src/utils/remark-reading-time.mjs';
+
 export default defineConfig({
-  site: "https://example.com",
-  integrations: [mdx(), sitemap(), react()],
+  site: 'https://philstainer.io',
+  integrations: [
+    mdx({ remarkPlugins: [remarkReadingTime] }),
+    sitemap(),
+    react(),
+  ],
 });

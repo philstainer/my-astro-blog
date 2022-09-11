@@ -1,0 +1,28 @@
+---
+import BlogPostPreview from '#components/BlogPostPreview.astro';
+
+const {} = Astro.props;
+
+const posts = (await Astro.glob('../pages/blog/*.{md,mdx}'))
+  .filter((post) => new Date(post.frontmatter.publishedDate) <= new Date())
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishDate).getTime() -
+      new Date(a.frontmatter.publishDate).getTime()
+  )
+  .slice(0, 3);
+---
+
+{
+  posts.length && (
+    <>
+      <h2>Latest Articles</h2>
+
+      <div class="flex flex-col gap-10">
+        {posts.map((post) => (
+          <BlogPostPreview post={post} />
+        ))}
+      </div>
+    </>
+  )
+}

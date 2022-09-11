@@ -10,6 +10,7 @@ specifiers:
   astro: ^1.1.5
   astro-seo: ^0.6.0
   autoprefixer: ^10.4.8
+  date-fns: ^2.29.2
   eslint: ^8.23.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-astro: ^0.18.0
@@ -19,11 +20,13 @@ specifiers:
   eslint-plugin-simple-import-sort: ^8.0.0
   husky: ^8.0.1
   lint-staged: ^13.0.3
+  mdast-util-to-string: ^3.1.0
   postcss: ^8.4.16
   prettier: ^2.7.1
   prettier-plugin-astro: ^0.5.4
   react: ^18.2.0
   react-dom: ^18.2.0
+  reading-time: ^1.5.0
   tailwindcss: ^3.1.8
 
 dependencies:
@@ -32,6 +35,9 @@ dependencies:
   '@astrojs/sitemap': 1.0.0
   astro: 1.1.5
   astro-seo: 0.6.0
+  date-fns: 2.29.2
+  mdast-util-to-string: 3.1.0
+  reading-time: 1.5.0
 
 devDependencies:
   '@astrojs/react': 1.1.1_biqbaboplfbrettd7655fr4n2y
@@ -1351,6 +1357,11 @@ packages:
   /data-uri-to-buffer/4.0.0:
     resolution: {integrity: sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==}
     engines: {node: '>= 12'}
+    dev: false
+
+  /date-fns/2.29.2:
+    resolution: {integrity: sha512-0VNbwmWJDS/G3ySwFSJA3ayhbURMTJLtwM2DTxf9CWondCnh6DTNlO9JgRSq6ibf4eD0lfMJNBxUdEAHHix+bA==}
+    engines: {node: '>=0.11'}
     dev: false
 
   /debug/2.6.9:
@@ -4021,6 +4032,10 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /reading-time/1.5.0:
+    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
+    dev: false
 
   /recast/0.20.5:
     resolution: {integrity: sha512-E5qICoPoNL4yU0H0NoBDntNB0Q5oMSNh9usFctYniLBluTthi3RsQVBXIJNbApOlvSwW/RGxIuokPcAc59J5fQ==}

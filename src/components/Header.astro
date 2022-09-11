@@ -1,29 +1,34 @@
 ---
-import { SITE_TITLE } from "../config";
-import HeaderLink from "./HeaderLink.astro";
+import { GITHUB, TWITTER } from '../config';
+import HeaderLink from './HeaderLink.astro';
+
+const pages = [
+  { name: 'home', href: '/' },
+  { name: 'blog', href: '/blog' },
+];
 ---
 
-<header>
-  <h2>
-    {SITE_TITLE}
-  </h2>
-  <nav>
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/blog">Blog</HeaderLink>
-    <HeaderLink href="/about">About</HeaderLink>
-    <HeaderLink href="https://twitter.com/astrodotbuild" target="_blank"
-      >Twitter</HeaderLink
-    >
-    <HeaderLink href="https://github.com/withastro/astro" target="_blank"
-      >GitHub</HeaderLink
-    >
+<header class="p-4 mx-auto w-full max-w-4xl md:p-6">
+  <nav class="flex flex-1 justify-between font-bold">
+    <div class="flex gap-1">
+      {
+        pages.map((page) => (
+          <HeaderLink href={page.href}>{page.name}</HeaderLink>
+        ))
+      }
+    </div>
+
+    <div>
+      <HeaderLink href={`${TWITTER}/philstainer`} target="_blank"
+        >twitter</HeaderLink
+      >
+      <HeaderLink href={`${GITHUB}/philstainer`} target="_blank"
+        >github</HeaderLink
+      >
+    </div>
   </nav>
 </header>
+
 <style>
-  header {
-    margin: 0em 0 2em;
-  }
-  h2 {
-    margin: 0.5em 0;
-  }
+
 </style>

@@ -13,7 +13,10 @@
     "baseUrl": ".",
     "paths": {
       "#components/*": ["src/components/*"],
-      "#pages/*": ["src/pages/*"]
+      "#pages/*": ["src/pages/*"],
+      "#layouts/*": ["src/layouts/*"],
+      "#content/*": ["src/content/*"],
+      "#utils/*": ["src/utils/*"]
     }
   }
 }

@@ -1,56 +1,68 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+import { format, parseISO } from 'date-fns';
+
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { GITHUB } from '../config';
 
 export interface Props {
   content: {
     title: string;
     description: string;
-    pubDate?: string;
+    readingTime: string;
+    publishedDate?: string;
     updatedDate?: string;
     heroImage?: string;
   };
+  file: string;
+  headings: { depth: number; slug: string; text: string }[];
 }
 
 const {
-  content: { title, description, pubDate, updatedDate, heroImage },
+  content: { title, description, updatedDate, heroImage },
+  file,
+  headings,
 } = Astro.props;
+
+const formattedUpdated = updatedDate
+  ? format(parseISO(updatedDate), 'LLLL d, yyyy')
+  : null;
+
+const filePath = file.replace(/.*\/src/, 'src');
+const editUrl = `${GITHUB}/philstainer/philstainer.io/edit/main/${filePath}`;
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 1px;
-      }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
-      }
-    </style>
-  </head>
+<BaseHead title={title} description={description} />
 
-  <body>
-    <Header />
-    <main>
-      <article>
-        {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-        <h1 class="title">{title}</h1>
-        {pubDate && <time>{pubDate}</time>}
-        {
-          updatedDate && (
-            <div>
-              Last updated on <time>{updatedDate}</time>
-            </div>
-          )
-        }
-        <hr />
-        <slot />
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Header />
+<main class="flex-1 p-4 pb-20 mx-auto w-full max-w-4xl md:p-6 md:pb-28">
+  <article class="p-2 m-0 max-w-full prose dark:prose-dark">
+    {
+      heroImage && (
+        <img
+          class="object-contain object-center"
+          width="1040"
+          height="520"
+          src={heroImage}
+          alt="astro"
+        />
+      )
+    }
+
+    <h1 class="mb-2">{title}</h1>
+
+    <small>
+      <time>{formattedUpdated}</time>
+    </small>
+
+    <slot />
+
+    <div class="gap-1 mt-10">
+      <a href={editUrl} target="_blank" rel="noopener noreferrer">
+        Edit on GitHub
+      </a>
+    </div>
+  </article>
+</main>
+<Footer />

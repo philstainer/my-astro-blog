@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  ::selection {
+    @apply bg-blue-500 text-gray-50 dark:bg-blue-700;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    @apply md:text-lg lg:text-xl;
+  }
+
+  body {
+    @apply flex flex-col min-h-screen dark:bg-slate-800 text-zinc-900 dark:text-zinc-50;
+  }
+}
