@@ -1,5 +1,5 @@
 ---
-layout: '../../layouts/BlogPost.astro'
+layout: '../../../layouts/BlogPost.astro'
 title: 'First post eheh eheeh ehehe ehehe hehe'
 description: 'Lorem ipsum dolor sit amet'
 publishedDate: 2022-09-10

@@ -5,7 +5,7 @@ import BaseLayout from '#layouts/BaseLayout.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../config';
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (await Astro.glob('./blog/*.{md,mdx}'))
+const posts = (await Astro.glob('./blog/**/*.{md,mdx}'))
   .filter((post) => new Date(post.frontmatter.publishedDate) <= new Date())
   .sort(
     (a, b) =>

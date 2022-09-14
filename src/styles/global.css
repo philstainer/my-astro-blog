@@ -9,10 +9,10 @@
 
   html {
     scroll-behavior: smooth;
-    @apply md:text-lg lg:text-xl;
+    @apply text-lg;
   }
 
   body {
-    @apply flex flex-col min-h-screen dark:bg-slate-800 text-zinc-900 dark:text-zinc-50;
+    @apply flex flex-col min-h-screen dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50;
   }
 }

@@ -1,10 +1,12 @@
 ---
 import { format, parseISO } from 'date-fns';
 
+import { getSlugFromPath } from '#utils/get-slug-form-path';
+
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { GITHUB } from '../config';
+import { GITHUB, TWITTER } from '../config';
 
 export interface Props {
   content: {
@@ -20,7 +22,7 @@ export interface Props {
 }
 
 const {
-  content: { title, description, updatedDate, heroImage },
+  content: { title, description, updatedDate, heroImage, readingTime },
   file,
   headings,
 } = Astro.props;
@@ -32,7 +34,8 @@ const formattedUpdated = updatedDate
 const filePath = file.replace(/.*\/src/, 'src');
 const editUrl = `${GITHUB}/philstainer/philstainer.io/edit/main/${filePath}`;
 
-const origin = Astro.url.origin;
+const blogPostUrl = `${Astro.site}blog/${getSlugFromPath(file)}`;
+const discussUrl = `${TWITTER}/search?q=${encodeURIComponent(blogPostUrl)}`;
 ---
 
 <BaseHead title={title} description={description} />
@@ -40,6 +43,12 @@ const origin = Astro.url.origin;
 <Header />
 <main class="flex-1 p-4 pb-20 mx-auto w-full max-w-4xl md:p-6 md:pb-28">
   <article class="p-2 m-0 max-w-full prose dark:prose-dark">
+    <h1 class="mb-2">{title}</h1>
+
+    <small>
+      <time>{formattedUpdated}</time> - {readingTime}
+    </small>
+
     {
       heroImage && (
         <img
@@ -52,38 +61,36 @@ const origin = Astro.url.origin;
       )
     }
 
-    <h1 class="mb-2">{title}</h1>
-
-    <small>
-      <time>{formattedUpdated}</time>
-    </small>
-
     <slot />
 
-    <div class="gap-1 mt-10">
+    <div class="flex gap-1 justify-center mt-10">
+      <a href={discussUrl} target="_blank" rel="noopener noreferrer">
+        Discuss on Twitter
+      </a>
+      <span>•</span>
       <a href={editUrl} target="_blank" rel="noopener noreferrer">
         Edit on GitHub
       </a>
     </div>
   </article>
 
-  <script
-    is:inline
-    src="https://giscus.app/client.js"
-    data-repo="philstainer/my-astro-blog"
-    data-repo-id="R_kgDOH8fbcA"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOH8fbcM4CRX2P"
-    data-mapping="og:title"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="light"
-    data-lang="en"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async
-  ></script>
+  <!-- <script -->
+  <!--   is:inline -->
+  <!--   src="https://giscus.app/client.js" -->
+  <!--   data-repo="philstainer/my-astro-blog" -->
+  <!--   data-repo-id="R_kgDOH8fbcA" -->
+  <!--   data-category="Announcements" -->
+  <!--   data-category-id="DIC_kwDOH8fbcM4CRX2P" -->
+  <!--   data-mapping="og:title" -->
+  <!--   data-strict="0" -->
+  <!--   data-reactions-enabled="1" -->
+  <!--   data-emit-metadata="0" -->
+  <!--   data-input-position="top" -->
+  <!--   data-theme="light" -->
+  <!--   data-lang="en" -->
+  <!--   data-loading="lazy" -->
+  <!--   crossorigin="anonymous" -->
+  <!--   async -->
+  <!-- ></script> -->
 </main>
 <Footer />

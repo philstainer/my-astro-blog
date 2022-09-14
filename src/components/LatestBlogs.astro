@@ -1,9 +1,7 @@
 ---
 import BlogPostPreview from '#components/BlogPostPreview.astro';
 
-const {} = Astro.props;
-
-const posts = (await Astro.glob('../pages/blog/*.{md,mdx}'))
+const posts = (await Astro.glob('../pages/blog/**/*.{md,mdx}'))
   .filter((post) => new Date(post.frontmatter.publishedDate) <= new Date())
   .sort(
     (a, b) =>

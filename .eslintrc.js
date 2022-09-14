@@ -5,6 +5,7 @@ module.exports = {
     'plugin:astro/recommended',
     'plugin:astro/jsx-a11y-recommended',
     'plugin:prettier/recommended',
+    'eslint-config-prettier',
   ],
   plugins: ['import', 'simple-import-sort', 'prettier'],
   overrides: [
