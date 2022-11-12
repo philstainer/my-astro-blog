@@ -6,7 +6,11 @@ module.exports = {
   endOfLine: 'auto',
   tabWidth: 2,
   useTabs: false,
-  plugins: [require.resolve('prettier-plugin-astro')],
+  tailwindConfig: './tailwind.config.js',
+  plugins: [
+    require.resolve('prettier-plugin-astro'),
+    require('prettier-plugin-tailwindcss'),
+  ],
   overrides: [
     {
       files: '*.astro',
